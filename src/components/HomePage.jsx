@@ -1,9 +1,11 @@
 import React from "react";
 
-function HomePage() {
+function HomePage(props) {
+  const { setFile, setAudioStream } = props;
+
   return (
     <main className=" flex-1 p-4  flex flex-col justify-center text-center  gap-3 sm:gap-4 md:gap-5 pb-20">
-      <h1 className=" font-semibold text-5xl sm:text-6xl md:text-6xl">
+      <h1 className=" font-semibold text-5xl sm:text-6xl md:text-7xl">
         Free<span className=" text-blue-400">Scribe</span>
       </h1>
       <h3 className=" font-medium md:text-lg">
@@ -18,11 +20,19 @@ function HomePage() {
         Or{" "}
         <label className="text-blue-400 cursor-pointer hover:text-blue-600 duration-200">
           upload
-          <input className="hidden" type="File" accept=".mp3,.wave" />
+          <input
+            onChange={(e) => {
+              const tempfile = e.target.files[0];
+              setFile(tempfile);
+            }}
+            className="hidden"
+            type="File"
+            accept=".mp3,.wave"
+          />
         </label>{" "}
         a mp3 File
       </p>
-      <p className=" italic text-slate-500">Free Now Free Forever</p>
+      <p className=" italic text-slate-400">Free Now Free Forever</p>
     </main>
   );
 }
