@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 function HomePage(props) {
   const { setFile, setAudioStream } = props;
+  const { recordingStatus, setRecordingStatus } = useState("inactive");
+  const { audioChunks, setAudioChunks } = useState([]);
+  const { duration, setDuration } = useState(0);
+
+  const mediaRecorder = useRef(null);
+
+  const mimeType = "audio/webm";
 
   return (
     <main className=" flex-1 p-4  flex flex-col justify-center text-center  gap-3 sm:gap-4 md:gap-5 pb-20">
